@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # до версии 1.9.0 нужно использовать apps/v1beta2
+kind: Deployment
+metadata:
+  name: server
+spec:
+  selector:
+    matchLabels:
+      run: server
+  replicas: 2 # запускает 2 пода, созданных по шаблону
+  template:
+    metadata:
+      labels:
+        run: server
+    spec:
+      containers:
+        - name: server
+          image: silverbars/server:1.1
+          ports:
+            - containerPort: 8080
+
